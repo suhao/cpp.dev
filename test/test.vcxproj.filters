@@ -1,22 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <ClCompile Include="test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="library">
+      <UniqueIdentifier>{ece72810-7bd3-406d-9527-b2762ccef7a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="language">
+      <UniqueIdentifier>{926886fe-5b3e-4c4a-9a16-df0c0500b649}</UniqueIdentifier>
     </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="function">
+      <UniqueIdentifier>{cb8ba01b-3db1-4c37-9f15-654b4f1e79a2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <ClInclude Include="library\aes.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\base64.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\byte.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\critical_section.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\file_stream.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\time.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\boost.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\types.h">
+      <Filter>language</Filter>
+    </ClInclude>
+    <ClInclude Include="language\typeid.h">
+      <Filter>language</Filter>
+    </ClInclude>
+    <ClInclude Include="function\function.h">
+      <Filter>function</Filter>
+    </ClInclude>
+    <ClInclude Include="function\thunk.h">
+      <Filter>function</Filter>
+    </ClInclude>
+    <ClInclude Include="function\wild_pointer.h">
+      <Filter>function</Filter>
+    </ClInclude>
+    <ClInclude Include="language\map_bound.h">
+      <Filter>language</Filter>
+    </ClInclude>
+    <ClInclude Include="language\quotient.h">
+      <Filter>language</Filter>
+    </ClInclude>
+    <ClInclude Include="language\stl.h">
+      <Filter>language</Filter>
+    </ClInclude>
+    <ClInclude Include="language\thread.h">
+      <Filter>language</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

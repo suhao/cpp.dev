@@ -25,5 +25,29 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello World!\n"; 
+    std::cout << "Hello test!\n";
+
+    // TODO: The next test suite.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // The end!
+    getchar();
+    std::string input;
+    std::cin >> input;
+    return 0;
 }

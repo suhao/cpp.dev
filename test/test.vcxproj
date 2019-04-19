@@ -153,6 +153,24 @@
   <ItemGroup>
     <ClCompile Include="test.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="function\function.h" />
+    <ClInclude Include="function\wild_pointer.h" />
+    <ClInclude Include="function\thunk.h" />
+    <ClInclude Include="language\map_bound.h" />
+    <ClInclude Include="language\quotient.h" />
+    <ClInclude Include="language\stl.h" />
+    <ClInclude Include="language\thread.h" />
+    <ClInclude Include="language\typeid.h" />
+    <ClInclude Include="library\aes.h" />
+    <ClInclude Include="library\base64.h" />
+    <ClInclude Include="library\boost.h" />
+    <ClInclude Include="library\byte.h" />
+    <ClInclude Include="library\critical_section.h" />
+    <ClInclude Include="library\file_stream.h" />
+    <ClInclude Include="library\time.h" />
+    <ClInclude Include="library\types.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
