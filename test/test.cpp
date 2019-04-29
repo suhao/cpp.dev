@@ -23,31 +23,24 @@
 
 
 #include <iostream>
+#include <string>
+
+#include "driver/windows/dolby.h"
 
 int main() {
     std::cout << "Hello test!\n";
 
     // TODO: The next test suite.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    auto result = dolby_version();
+    std::cout << "Dolby version:" << result << "\n";
 
 
     // The end!
-    getchar();
-    std::string input;
-    std::cin >> input;
+    std::cout << "End test! \n";
+    // getchar();
+    // std::string input;
+    // std::cin >> input;
+    system("PAUSE");
     return 0;
 }

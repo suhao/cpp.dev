@@ -13,6 +13,15 @@
     <Filter Include="function">
       <UniqueIdentifier>{cb8ba01b-3db1-4c37-9f15-654b4f1e79a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="feature">
+      <UniqueIdentifier>{bf3f720e-d6a9-4f21-b3e2-d7a7dfe5f48d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driver">
+      <UniqueIdentifier>{322ff84a-2beb-4d58-877d-cc337dfe7d9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driver\windows">
+      <UniqueIdentifier>{ff7bcb71-9d6f-49ae-bea6-f837b5aa9cbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="library\aes.h">
@@ -62,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="language\thread.h">
       <Filter>language</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\windows\dolby.h">
+      <Filter>driver\windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

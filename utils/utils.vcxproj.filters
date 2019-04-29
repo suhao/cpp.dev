@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="utils">
+      <UniqueIdentifier>{22939de0-724c-4677-b52c-32a67d11e127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\files">
+      <UniqueIdentifier>{0960e4e7-2d25-4aed-86a9-1ab178910557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\system">
+      <UniqueIdentifier>{6a0b8f63-ac95-4d0f-9338-ad9ce46f1449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="testing">
+      <UniqueIdentifier>{d089b62b-ab0b-4f8a-b794-0724a345d1c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="testing\utils">
+      <UniqueIdentifier>{677d6366-a8c3-446d-8172-dedc0aba64d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="uilib">
+      <UniqueIdentifier>{b6056101-6a6e-409b-8296-e152184a5a09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{446db3d3-8fa1-4ee5-868d-5261fc3df379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msbuild">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>msbuild</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\window_delegate.h">
+      <Filter>uilib</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\window_impl.h">
+      <Filter>uilib</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\window_msg_util.h">
+      <Filter>uilib</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\window_proc.h">
+      <Filter>uilib</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\basictypes.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\compiler.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\dynamic_library.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\dynamic_library_interface.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\enumerate.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\nested_cast.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_bitmap.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_com_object.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_gdi_object.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_handle.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_hdc.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_hglobal.h.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_object.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_ole_initializer.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_ref_object.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\scoped_selected_object.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\stl_util.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\system\version.h">
+      <Filter>utils\system</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\files\file_util.h">
+      <Filter>utils\files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="utils\scoped_com_initializer.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="utils\enumerate_test.cpp">
+      <Filter>testing\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\stb_image.c">
+      <Filter>third_party</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\window_impl.cpp">
+      <Filter>uilib</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\window_proc.cpp">
+      <Filter>uilib</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\dynamic_library.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\scoped_bitmap.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\scoped_com_object.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\scoped_object.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\scoped_ole_initializer.cc">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\scoped_ref_object.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\files\file_util.cpp">
+      <Filter>utils\files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>msbuild</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
