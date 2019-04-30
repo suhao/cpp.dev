@@ -47,19 +47,27 @@ DEFINE_GUID(/*MFVideoFormat_P010*/MFV_DOLBY_P010, FCC('P010'), 0x0000, 0x0010, 0
 
 
 int dolby_version() {
-    ScopedCOMInitializer com_initializer(ScopedCOMInitializer::kMTA);
+    ScopedCOMInitializer com_initializer(COINIT(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE));
 
     utils::DynamicLibrary library(std::wstring(L"Mfplat.dll"));
     if (!library.is_valid()) return -1;
 
-    auto MFTEnumAPI = library.GetFunctionPointer<HRESULT, GUID, UINT32, const MFT_REGISTER_TYPE_INFO*, const MFT_REGISTER_TYPE_INFO*, IMFActivate***, UINT32*>("MFTEnumEx");
+    auto MFTEnumAPI = library.GetFunctionPointer<HRESULT, GUID, UINT32, 
+        const MFT_REGISTER_TYPE_INFO*, const MFT_REGISTER_TYPE_INFO*, IMFActivate***, UINT32*>("MFTEnumEx");
     if (MFTEnumAPI == nullptr) return -2;
 
+    auto MFStartupAPI = library.GetFunctionPointer<HRESULT, ULONG, DWORD >("MFStartup");
+    auto MFShutdownAPI = library.GetFunctionPointer<HRESULT>("MFShutdown");
+
+    if (MFStartupAPI == nullptr || MFShutdownAPI == nullptr) return -3;
 
     IMFTransform* mf_transform_ = nullptr;
     HRESULT hr = S_OK;
 
-    MFT_REGISTER_TYPE_INFO input_type = { MFM_DOLBY_VIDEO, MFV_DOLBY_P010 };
+    MFT_REGISTER_TYPE_INFO input_type = { 0 };
+    input_type.guidMajorType = MFM_DOLBY_VIDEO;
+    input_type.guidSubtype = MFV_DOLBY_P010;
+
     IMFActivate **activate_objects = NULL;
     UINT32 activate_objects_count = 0;
 
@@ -67,10 +75,17 @@ int dolby_version() {
     IMFActivate * ppActivate = nullptr;
 
 
+     const int MF_WIN7_VERSION = (0x0002 << 16 | MF_API_VERSION);
+
+
+    auto result = MFStartupAPI(MF_VERSION, MFSTARTUP_FULL);
+    if (FAILED(result)) return -3;
 
     PCWSTR strProfile = L"dvhe.05";
-    auto result = MFTEnumAPI(MFT_DOLBY_EFFECT, MFT_ENUM_FLAG_ALL, &input_type, NULL, &activate_objects, &activate_objects_count);
+    result = MFTEnumAPI(MFT_DOLBY_EFFECT, MFT_ENUM_FLAG_ALL, &input_type, NULL, &activate_objects, &activate_objects_count);
+    if (FAILED(result)) return -4;
 
+    std::cout << "activate objects counts: " << activate_objects_count << "\n";
 
     for (UINT32 index = 0; index < activate_objects_count; index++)
     {
@@ -95,7 +110,9 @@ int dolby_version() {
 
     CoTaskMemFree(activate_objects);
 
-    return 0;
+    MFShutdownAPI();
+
+    return foundMatch ? 1 : 0;
 }
 
 

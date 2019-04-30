@@ -31,6 +31,10 @@ class ScopedCOMInitializer {
     Initialize(COINIT_MULTITHREADED);
   }
 
+  explicit ScopedCOMInitializer(COINIT init) {
+    Initialize(init);
+  }
+
   ~ScopedCOMInitializer() {
 #ifndef NDEBUG
     // Using the windows API directly to avoid dependency on platform_thread.
