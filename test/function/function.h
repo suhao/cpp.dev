@@ -199,14 +199,20 @@ public:
     bool Connect(R( Receive::*method)(Args...) , Function function) {
         using RunType = RunnableAdapter<R, Receive, Args...>::RunType;
         using Runnable = RunnableAdapter<R, Receive, Args...>::Runnable;
-        std::shared_ptr<void> value(reinterpret_cast<void*>(new RunType(function)));
-        
-        auto fc = reinterpret_cast<RunType*>(value.get());
-        RunType mm(*fc);
-        if (mm) {
-            mm(333);
+        std::shared_ptr<void> value((reinterpret_cast<void*>(new RunType(function))));
+
+        void* p = nullptr;
+        auto key = function_cast<void*>(method);
+        slots_[key].insert((std::make_pair(p, value)));
+        auto& list = slots_[key];
+        for (auto it = list.begin(); it != list.end(); ) {
+            auto& fc = it->second;
+            if (!fc) continue;
+            auto fctt = reinterpret_cast<RunType*>(fc.get());
+            if (!fctt || !(*fctt)) continue;
+            if ((*fctt)(333)) list.erase(it++);
+            else ++it;
         }
-        (*fc)(3);
 
         //auto key = method.get();
         return true;
@@ -251,7 +257,7 @@ private:
 
     std::multimap<void*, void*> dispatcher_;
 
-    std::multimap<void* /*key*/, std::map<void* /*obj*/, std::shared_ptr<void*> /*callback*/>> slots_;
+    std::map<void* /*key*/, std::map<void* /*obj*/, std::shared_ptr<void> /*callback*/>> slots_;
 };
 
 
