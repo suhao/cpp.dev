@@ -27,10 +27,13 @@
 
 #include "driver/windows/dolby.h"
 
+#include "function/function.h"
+
 int main() {
     std::cout << "Hello test!\n";
 
     // TODO: The next test suite.
+    function_test();
 
     auto result = dolby_version();
     std::cout << "Dolby version:" << result << "\n";

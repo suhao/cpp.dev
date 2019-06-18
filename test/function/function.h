@@ -84,6 +84,58 @@ __asm {                     \
     }                       \
 }
 
+template<typename R, typename Receive, typename... Args>
+struct FunctorTraits{
+    typedef R(Receive::* Functor)(Args...);
+    using RunType = std::function<bool(Args...)>;
+    FunctorTraits(Functor functor, RunType runner) : functor_(functor), runner_(runner) {}
+
+    Functor functor_;
+    RunType runner_;
+
+};
+
+template<typename R, typename Receive, typename P1>
+struct FunctorTrait{
+    typedef R(Receive::* Functor)(P1);
+    using RunType = std::function<bool(P1)>;
+    FunctorTrait(Functor functor, RunType runner) : functor_(functor), runner_(runner) {}
+
+    Functor functor_;
+    RunType runner_;
+
+};
+
+//template<typename... Args>
+//class RunnableAdapter;
+
+//template<typename R, typename... Args>
+//class RunnableAdapter<R(*)(Args...)> {
+//public:
+//    typedef R(*Runnable)(Args...);
+//    using RunType = std::function<bool(Args...)>;
+//    static constexpr bool is_method = false;
+//    static constexpr bool is_function = true;
+//    RunnableAdapter(Runnable function) : function_(function) {}
+//    void* get() const { return function_cast(function_); }
+//
+//private:
+//    Runnable function_ = nullptr const;
+//};
+
+template<typename R, typename T, typename... Args>
+class RunnableAdapter/*<R(T::*)(Args...)>*/ {
+public:
+    typedef R(T::*Runnable)(Args...);
+    using RunType = std::function<bool(Args...)>;
+    static constexpr bool is_method = true;
+    static constexpr bool is_function = false;
+    RunnableAdapter(Runnable method) : method_(method) {}
+    void* get() const { return function_cast(method_); }
+
+private:
+    Runnable method_ = nullptr const;
+};
 
 
 template<class Observer>
@@ -121,6 +173,48 @@ public:
     };
 
 
+    //template<typename R, typename... Args>
+    //class Functor {
+    //public:
+    //    explicit Functor(R(*function)(Args&&...)) : function_(function) {}
+    //    void* get() { return function_cast<void*>(function); }
+    //private:
+    //    R(*function_)(Args...);
+    //};
+
+ 
+
+   /* template<typename T, typename Function>
+    bool Connect(T , Function call) {
+        return true;
+    }*/
+
+
+    //template<typename R, typename T, typename... Args>
+    //bool Connect(FunctorTraits<R, T, Args...> callback) {
+    //    return true;
+    //}
+
+    template<typename Function, typename R, typename Receive, typename... Args>
+    bool Connect(R( Receive::*method)(Args...) , Function function) {
+        using RunType = RunnableAdapter<R, Receive, Args...>::RunType;
+        using Runnable = RunnableAdapter<R, Receive, Args...>::Runnable;
+        std::shared_ptr<void> value(reinterpret_cast<void*>(new RunType(function)));
+        
+        auto fc = reinterpret_cast<RunType*>(value.get());
+        RunType mm(*fc);
+        if (mm) {
+            mm(333);
+        }
+        (*fc)(3);
+
+        //auto key = method.get();
+        return true;
+    }
+
+    
+
+
     template<typename T>
     void AddObserver(T method, std::function<void()> callback, bool repeating) {
         void* func = reinterpret_cast<void*>(new CallbackBase1(callback));
@@ -156,8 +250,9 @@ public:
 private:
 
     std::multimap<void*, void*> dispatcher_;
-};
 
+    std::multimap<void* /*key*/, std::map<void* /*obj*/, std::shared_ptr<void*> /*callback*/>> slots_;
+};
 
 
 
@@ -221,6 +316,32 @@ void function_test() {
 
     dispatcher.AddObserver(&Base::f2, std::bind(&Driver::f2, &d), true);
     dispatcher.AddObserver(&Base::f2, std::bind(&Base::f2, &d), true);
+
+
+    //dispatcher.Connect(FunctorTraits<void, Base, int>(&Base::f3, [](int a) {
+    //    return true;
+    //    }));
+
+
+    dispatcher.Connect(&Base::f3, [](int t) {
+        t += 199;
+
+        std::cout << t;
+        return true;;
+        });
+
+    auto ddd = [](int) {
+        return;
+    };
+
+    auto bbb = [](std::wstring) {
+        return;
+    };
+
+    //dispatcher.Connect(&Base::f3, bbb);
+
+
+
     std::function<void(int)> fc;
     fc = [&](int a) {
         d.f3(a);
