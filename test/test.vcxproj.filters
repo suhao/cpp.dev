@@ -22,6 +22,9 @@
     <Filter Include="driver\windows">
       <UniqueIdentifier>{ff7bcb71-9d6f-49ae-bea6-f837b5aa9cbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="bug">
+      <UniqueIdentifier>{9528fcf0-27b1-43f5-9fe2-2ebdfa3afa4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="library\aes.h">
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="driver\windows\dolby.h">
       <Filter>driver\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="bug\virtual_inheritance.h">
+      <Filter>bug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

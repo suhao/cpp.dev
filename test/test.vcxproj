@@ -171,6 +171,7 @@
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bug\virtual_inheritance.h" />
     <ClInclude Include="driver\windows\dolby.h" />
     <ClInclude Include="function\function.h" />
     <ClInclude Include="function\wild_pointer.h" />

@@ -29,10 +29,14 @@
 
 #include "function/function.h"
 
+#include "bug/virtual_inheritance.h"
+
 int main() {
     std::cout << "Hello test!\n";
 
     // TODO: The next test suite.
+    test_virtual_inheritance();
+
     function_test();
 
     auto result = dolby_version();
