@@ -31,10 +31,14 @@
 
 #include "bug/virtual_inheritance.h"
 
+#include "language/stl.h"
+
 int main() {
     std::cout << "Hello test!\n";
 
     // TODO: The next test suite.
+    test_list();
+
     test_virtual_inheritance();
 
     function_test();

@@ -12,6 +12,7 @@
 
 
 #include <vector>
+#include <list>
 
 void test_vector() {
 
@@ -25,6 +26,14 @@ void test_vector() {
         }
     }
 
+}
+
+void test_list() {
+    std::list<int> list1 = { 8,9,4,5,0,2,9 };
+    std::list<int> list2 = { 2,3,5,4,1 };
+    list1.splice(list1.end(), list2);
+    list1.merge(list2);
+    int a = 0;
 }
 
 
