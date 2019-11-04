@@ -382,4 +382,19 @@ void function_test() {
     // auto p5 = static_cast<void*>(&Driver::f1);
 }
 
+// 观察者模式：
+// 1. google base老版本的实现方式
+// 2. boost.signal基础上实现
+// 3. google base新版本的实现方式
+// 4. 自我实现一个：结合google base新老版本和boost.signal的基础上实现，可以利用https://isocpp.org/blog/2015/04/making-boost.signals2-more-oop-friendly-pavel-frolov的方式
+//  主要考虑到可以在被通知时能够自删除（原有的想法是利用weakPtrs实现，指针有效时进行调用，然后在执行返回后删除）
+//  考虑到接口多个函数和继承的方式需要实现所有的接口函数，不确定有没有更好的办法利用宏来定义所有的接口，从而实现接口的定义和调用自动化
+//  LambdaOBS接口实现了单个接口的归一化绑定和调用，但是针对SDK的接口需要利用观察者模式重新实现来处理
+// 所以，观察者模式在c++中时无法离开的；具体的实现待详细设计以及调优和兼容性处理
+
+template<typename Callback, typename MethodName, typename MethodSignature>
+struct ObserverMethod {
+
+};
+
 
